@@ -2,6 +2,7 @@ package com.example.webapp.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -48,7 +49,7 @@ public class User {
                 name="role_id", referencedColumnName = "id"))
     private Collection<Role> roles;
 
-    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "favourites",
         joinColumns = @JoinColumn(
@@ -65,6 +66,7 @@ public class User {
 
     public User(){
         this.avatar="avatar.png";
+        this.books = Collections.emptyList();
     }
     
     public User(String firstName, String lastName, String email, String password, Collection<Role> roles)

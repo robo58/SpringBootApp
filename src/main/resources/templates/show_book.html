@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" th:href="@{/}">WebApp</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div sec:authorize="isAnonymous()" class="navbar-nav ml-auto">
+            <a class="nav-item nav-link" th:href="@{/login}">Login</a>
+            <a class="nav-item nav-link" th:href="@{/register}">Register</a>
+          </div>
+          <div sec:authorize="isAuthenticated()" class="navbar-nav ml-auto">
+            <a class="nav-item nav-link" th:href="@{/books}">Books</a>
+            <a class="nav-item nav-link" th:href="@{/authors}">Authors</a>
+            <a class="nav-item nav-link" th:href="@{/publishers}">Publishers</a>
+            <a class="nav-item nav-link" th:href="@{/categories}">Categories</a>
+            <a class="nav-item nav-link" th:href="@{/logout}">Logout</a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <h1>Book</h1>
+                <div th:if="${favorite}">
+                  <form action="#" th:action="@{/unFavorBook/{id}(id=${book.id})}" method="POST">
+                    <button type="submit" class="btn btn-danger btn-sm mb-3 form-control">Remove from favorites</button>
+                </form>
+                </div>
+                <div th:unless="${favorite}">
+                  <form action="#" th:action="@{/favorBook/{id}(id=${book.id})}" method="POST">
+                    <button type="submit" class="btn btn-success btn-sm mb-3 form-control">Add to favorites</button>
+                </form>
+                </div>
+                <img th:src="@{'/uploads/images/'+${book.coverImage}}" alt="Cover image..." style="width: 100px;">
+                <h2 th:text="${book.title}"></h2>
+                <span th:text="${book.description}"></span>
+                <span th:text="${book.firstPublish}"></span>
+                <span th:text="${book.authorName}"></span>
+                <span th:text="${book.publisherName}"></span>
+                <span th:text="${book.categoryName}"></span>
+
+                <br><br>
+                <form action="#" th:action="@{/addReview/{id}(id=${book.id})}" th:object="${newReview}" method="POST">
+                  <input type="hidden" th:field="${id}">
+                  <textarea class="form-control" th:field="*{text}"></textarea>
+                  <label>Select rating</label>
+                  <select class="form-control" th:field="*{rating}">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                  </select>
+                  <button type="submit" class="btn btn-primary form-control">Add Review</button>
+                </form>
+
+                <br><br>
+                <h2>Reviews</h2>
+                <div th:each="review : ${reviews}" class="bg-secondary p-3 my-3 rounded text-white">
+                  <h4 th:text=${review.user.firstName}></h4>
+                    <p th:text="${review.text}"></p>
+                    <h6 th:text="${review.rating}"></h6>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+</body>
+</html>
