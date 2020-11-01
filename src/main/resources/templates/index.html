@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css"/>
-    <link rel="stylesheet" href="css/lightslider.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/css/lightslider.css"/>
     <!--Jquery-->
-    <script type="text/javascript" src="js/JQuery3.3.1.js"></script>
-    <script type="text/javascript" src="js/lightslider.js"></script>
+    <script type="text/javascript" src="/js/JQuery3.3.1.js"></script>
+    <script type="text/javascript" src="/js/lightslider.js"></script>
 </head>
 <body>
 
@@ -25,8 +25,8 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <form class="form-inline my-2 my-md-0">
-                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+            <form action="#" th:action="@{/search}" method="GET" class="form-inline my-2 my-md-0">
+                <input class="form-control" th:value="${query}" name="query" type="text" placeholder="Search" aria-label="Search">
             </form>
             <div sec:authorize="isAnonymous()" class="navbar-nav ml-auto">
                 <a class="nav-item nav-link" th:href="@{/login}">Login</a>
@@ -54,7 +54,7 @@
                 <!--slider-box-->
                 <div class="box">
                     <!--icon-->
-                    <img src="img/children.svg" class="model">
+                    <img src="/img/children.svg" class="model">
                     <!--genre-->
                     <div class="details">
                         <h3>Dječje</h3>
@@ -66,7 +66,7 @@
                 <!--slider-box-->
                 <div class="box">
                     <!--icon-->
-                    <img src="img/biographies.svg" class="model">
+                    <img src="/img/biographies.svg" class="model">
                     <!--genre-->
                     <div class="details">
                         <h3>Biografija</h3>
@@ -78,7 +78,7 @@
                 <!--slider-box-->
                 <div class="box">
                     <!--icon-->
-                    <img src="img/fantasy.svg" class="model">
+                    <img src="/img/fantasy.svg" class="model">
                     <!--genre-->
                     <div class="details">
                         <h3>Fantazija</h3>
@@ -90,7 +90,7 @@
                 <!--slider-box-->
                 <div class="box">
                     <!--icon-->
-                    <img src="img/history.svg" class="model">
+                    <img src="/img/history.svg" class="model">
                     <!--genre-->
                     <div class="details">
                         <h3>Povijest</h3>
@@ -102,7 +102,7 @@
                 <!--slider-box-->
                 <div class="box">
                     <!--icon-->
-                    <img src="img/medicine.svg" class="model">
+                    <img src="/img/medicine.svg" class="model">
                     <!--genre-->
                     <div class="details">
                         <h3>Medicina</h3>
@@ -114,7 +114,7 @@
                 <!--slider-box-->
                 <div class="box">
                     <!--icon-->
-                    <img src="img/music.svg" class="model">
+                    <img src="/img/music.svg" class="model">
                     <!--genre-->
                     <div class="details">
                         <h3>Glazba</h3>
@@ -126,7 +126,7 @@
                 <!--slider-box-->
                 <div class="box">
                     <!--icon-->
-                    <img src="img/mystery_and_detective_stories.svg" class="model">
+                    <img src="/img/mystery_and_detective_stories.svg" class="model">
                     <!--genre-->
                     <div class="details">
                         <h3>Krimići</h3>
@@ -138,7 +138,7 @@
                 <!--slider-box-->
                 <div class="box">
                     <!--icon-->
-                    <img src="img/plays.svg" class="model">
+                    <img src="/img/plays.svg" class="model">
                     <!--genre-->
                     <div class="details">
                         <h3>Drama</h3>
@@ -150,7 +150,7 @@
                 <!--slider-box-->
                 <div class="box">
                     <!--icon-->
-                    <img src="img/recipes.svg" class="model">
+                    <img src="/img/recipes.svg" class="model">
                     <!--genre-->
                     <div class="details">
                         <h3>Recepti</h3>
@@ -162,7 +162,7 @@
                 <!--slider-box-->
                 <div class="box">
                     <!--icon-->
-                    <img src="img/religion.svg" class="model">
+                    <img src="/img/religion.svg" class="model">
                     <!--genre-->
                     <div class="details">
                         <h3>Religija</h3>
@@ -174,7 +174,7 @@
                 <!--slider-box-->
                 <div class="box">
                     <!--icon-->
-                    <img src="img/romance.svg" class="model">
+                    <img src="/img/romance.svg" class="model">
                     <!--genre-->
                     <div class="details">
                         <h3>Romantika</h3>
@@ -186,7 +186,7 @@
                 <!--slider-box-->
                 <div class="box">
                     <!--icon-->
-                    <img src="img/science.svg" class="model">
+                    <img src="/img/science.svg" class="model">
                     <!--genre-->
                     <div class="details">
                         <h3>Znanost</h3>
@@ -198,7 +198,7 @@
                 <!--slider-box-->
                 <div class="box">
                     <!--icon-->
-                    <img src="img/science_fiction.svg" class="model">
+                    <img src="/img/science_fiction.svg" class="model">
                     <!--genre-->
                     <div class="details">
                         <h3>Znanstvena fantastika</h3>
@@ -210,7 +210,7 @@
                 <!--slider-box-->
                 <div class="box">
                     <!--icon-->
-                    <img src="img/textbooks.svg" class="model">
+                    <img src="/img/textbooks.svg" class="model">
                     <!--genre-->
                     <div class="details">
                         <h3>Udžbenici</h3>
