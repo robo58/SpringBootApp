@@ -3,11 +3,14 @@ package com.example.webapp.web;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.webapp.model.User;
 import com.example.webapp.service.BookService;
 import com.example.webapp.service.CategoryService;
+import com.example.webapp.service.UserService;
 import com.example.webapp.web.dto.BookDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +26,9 @@ public class MainController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/")
     public String showHome(Model model){
@@ -51,5 +57,10 @@ public class MainController {
     @GetMapping("/login")
     public String login(){
         return "login";
+    }
+
+    @GetMapping("/profil")
+    public String profil(Authentication authentication){
+        return "profil";
     }
 }

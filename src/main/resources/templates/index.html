@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Početna stranica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css"/>
     <link rel="stylesheet" href="/css/lightslider.css"/>
@@ -19,25 +20,26 @@
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-book" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M1 2.828v9.923c.918-.35 2.107-.692 3.287-.81 1.094-.111 2.278-.039 3.213.492V2.687c-.654-.689-1.782-.886-3.112-.752-1.234.124-2.503.523-3.388.893zm7.5-.141v9.746c.935-.53 2.12-.603 3.213-.493 1.18.12 2.37.461 3.287.811V2.828c-.885-.37-2.154-.769-3.388-.893-1.33-.134-2.458.063-3.112.752zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
             </svg>
-            <strong style="margin-left: 3px">  Library</strong>
+            <strong style="margin-left: 3px">Biblioteka</strong>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <form action="#" th:action="@{/search}" method="GET" class="form-inline my-2 my-md-0">
-                <input class="form-control" th:value="${query}" name="query" type="text" placeholder="Search" aria-label="Search">
+            <form class="form-inline my-2 my-md-0">
+                <input class="form-control" type="text" placeholder="Pretraga" aria-label="Search">
             </form>
             <div sec:authorize="isAnonymous()" class="navbar-nav ml-auto">
-                <a class="nav-item nav-link" th:href="@{/login}">Login</a>
-                <a class="nav-item nav-link" th:href="@{/register}">Register</a>
+                <a class="nav-item nav-link" th:href="@{/login}">Prijava</a>
+                <a class="nav-item nav-link" th:href="@{/register}">Registracija</a>
             </div>
             <div sec:authorize="isAuthenticated()" class="navbar-nav ml-auto">
-                <a class="nav-item nav-link" th:href="@{/books}">Books</a>
-                <a class="nav-item nav-link" th:href="@{/authors}">Authors</a>
-                <a class="nav-item nav-link" th:href="@{/publishers}">Publishers</a>
-                <a class="nav-item nav-link" th:href="@{/categories}">Categories</a>
-                <a class="nav-item nav-link" th:href="@{/logout}">Logout</a>
+                <a class="nav-item nav-link" th:href="@{/profil}">Profil</a>
+                <a class="nav-item nav-link" th:href="@{/books}">Knjige</a>
+                <a class="nav-item nav-link" th:href="@{/authors}">Autori</a>
+                <a class="nav-item nav-link" th:href="@{/publishers}">Izdavači</a>
+                <a class="nav-item nav-link" th:href="@{/categories}">Kategorije</a>
+                <a class="nav-item nav-link" th:href="@{/logout}">Odjavite se</a>
             </div>
         </div>
     </nav>
@@ -52,170 +54,198 @@
             <!--1------------------------------>
             <li class="item-a">
                 <!--slider-box-->
-                <div class="box">
-                    <!--icon-->
-                    <img src="/img/children.svg" class="model">
-                    <!--genre-->
-                    <div class="details">
-                        <h3>Dječje</h3>
+                <a th:href="@{/kategorija/{id}(id=5)}">
+                    <div class="box">
+                        <!--icon-->
+                        <img src="/img/children.svg" class="model">
+                        <!--genre-->
+                        <div class="details">
+                            <h3>Dječje</h3>
+                        </div>
                     </div>
-                </div>
+                </a>
             </li>
             <!--2------------------------------>
             <li class="item-a">
                 <!--slider-box-->
-                <div class="box">
-                    <!--icon-->
-                    <img src="/img/biographies.svg" class="model">
-                    <!--genre-->
-                    <div class="details">
-                        <h3>Biografija</h3>
+                <a th:href="@{/kategorija/{id}(id=6)}">
+                    <div class="box">
+                        <!--icon-->
+                        <img src="/img/biographies.svg" class="model">
+                        <!--genre-->
+                        <div class="details">
+                            <h3>Biografija</h3>
+                        </div>
                     </div>
-                </div>
+                </a>
             </li>
             <!--3------------------------------>
             <li class="item-a">
                 <!--slider-box-->
-                <div class="box">
-                    <!--icon-->
-                    <img src="/img/fantasy.svg" class="model">
-                    <!--genre-->
-                    <div class="details">
-                        <h3>Fantazija</h3>
+                <a th:href="@{/kategorija/{id}(id=7)}">
+                    <div class="box">
+                        <!--icon-->
+                        <img src="/img/fantasy.svg" class="model">
+                        <!--genre-->
+                        <div class="details">
+                            <h3>Fantazija</h3>
+                        </div>
                     </div>
-                </div>
+                </a>
             </li>
             <!--4------------------------------>
             <li class="item-a">
                 <!--slider-box-->
-                <div class="box">
-                    <!--icon-->
-                    <img src="/img/history.svg" class="model">
-                    <!--genre-->
-                    <div class="details">
-                        <h3>Povijest</h3>
+                <a th:href="@{/kategorija/{id}(id=9)}">
+                    <div class="box">
+                        <!--icon-->
+                        <img src="/img/history.svg" class="model">
+                        <!--genre-->
+                        <div class="details">
+                            <h3>Povijest</h3>
+                        </div>
                     </div>
-                </div>
+                </a>
             </li>
             <!--5------------------------------>
             <li class="item-a">
                 <!--slider-box-->
-                <div class="box">
-                    <!--icon-->
-                    <img src="/img/medicine.svg" class="model">
-                    <!--genre-->
-                    <div class="details">
-                        <h3>Medicina</h3>
+                <a th:href="@{/kategorija/{id}(id=10)}">
+                    <div class="box">
+                        <!--icon-->
+                        <img src="/img/medicine.svg" class="model">
+                        <!--genre-->
+                        <div class="details">
+                            <h3>Medicina</h3>
+                        </div>
                     </div>
-                </div>
+                </a>
             </li>
             <!--6------------------------------>
             <li class="item-a">
                 <!--slider-box-->
-                <div class="box">
-                    <!--icon-->
-                    <img src="/img/music.svg" class="model">
-                    <!--genre-->
-                    <div class="details">
-                        <h3>Glazba</h3>
+                <a th:href="@{/kategorija/{id}(id=11)}">
+                    <div class="box">
+                        <!--icon-->
+                        <img src="/img/music.svg" class="model">
+                        <!--genre-->
+                        <div class="details">
+                            <h3>Glazba</h3>
+                        </div>
                     </div>
-                </div>
+                </a>
             </li>
             <!--7------------------------------>
             <li class="item-a">
                 <!--slider-box-->
-                <div class="box">
-                    <!--icon-->
-                    <img src="/img/mystery_and_detective_stories.svg" class="model">
-                    <!--genre-->
-                    <div class="details">
-                        <h3>Krimići</h3>
+                <a th:href="@{/kategorija/{id}(id=12)}">
+                    <div class="box">
+                        <!--icon-->
+                        <img src="/img/mystery_and_detective_stories.svg" class="model">
+                        <!--genre-->
+                        <div class="details">
+                            <h3>Krimići</h3>
+                        </div>
                     </div>
-                </div>
+                </a>
             </li>
             <!--8------------------------------>
             <li class="item-a">
                 <!--slider-box-->
-                <div class="box">
-                    <!--icon-->
-                    <img src="/img/plays.svg" class="model">
-                    <!--genre-->
-                    <div class="details">
-                        <h3>Drama</h3>
+                <a th:href="@{/kategorija/{id}(id=13)}">
+                    <div class="box">
+                        <!--icon-->
+                        <img src="/img/plays.svg" class="model">
+                        <!--genre-->
+                        <div class="details">
+                            <h3>Drama</h3>
+                        </div>
                     </div>
-                </div>
+                </a>
             </li>
             <!--9------------------------------>
             <li class="item-a">
                 <!--slider-box-->
-                <div class="box">
-                    <!--icon-->
-                    <img src="/img/recipes.svg" class="model">
-                    <!--genre-->
-                    <div class="details">
-                        <h3>Recepti</h3>
+                <a th:href="@{/kategorija/{id}(id=20)}">
+                    <div class="box">
+                        <!--icon-->
+                        <img src="/img/recipes.svg" class="model">
+                        <!--genre-->
+                        <div class="details">
+                            <h3>Recepti</h3>
+                        </div>
                     </div>
-                </div>
+                </a>
             </li>
             <!--10------------------------------>
             <li class="item-a">
                 <!--slider-box-->
-                <div class="box">
-                    <!--icon-->
-                    <img src="/img/religion.svg" class="model">
-                    <!--genre-->
-                    <div class="details">
-                        <h3>Religija</h3>
+                <a th:href="@{/kategorija/{id}(id=15)}">
+                    <div class="box">
+                        <!--icon-->
+                        <img src="/img/religion.svg" class="model">
+                        <!--genre-->
+                        <div class="details">
+                            <h3>Religija</h3>
+                        </div>
                     </div>
-                </div>
+                </a>
             </li>
             <!--11------------------------------>
             <li class="item-a">
                 <!--slider-box-->
-                <div class="box">
-                    <!--icon-->
-                    <img src="/img/romance.svg" class="model">
-                    <!--genre-->
-                    <div class="details">
-                        <h3>Romantika</h3>
+                <a th:href="@{/kategorija/{id}(id=16)}">
+                    <div class="box">
+                        <!--icon-->
+                        <img src="/img/romance.svg" class="model">
+                        <!--genre-->
+                        <div class="details">
+                            <h3>Romantika</h3>
+                        </div>
                     </div>
-                </div>
+                </a>
             </li>
             <!--12------------------------------>
             <li class="item-a">
                 <!--slider-box-->
-                <div class="box">
-                    <!--icon-->
-                    <img src="/img/science.svg" class="model">
-                    <!--genre-->
-                    <div class="details">
-                        <h3>Znanost</h3>
+                <a th:href="@{/kategorija/{id}(id=17)}">
+                    <div class="box">
+                        <!--icon-->
+                        <img src="/img/science.svg" class="model">
+                        <!--genre-->
+                        <div class="details">
+                            <h3>Znanost</h3>
+                        </div>
                     </div>
-                </div>
+                </a>
             </li>
             <!--13------------------------------>
             <li class="item-a">
                 <!--slider-box-->
-                <div class="box">
-                    <!--icon-->
-                    <img src="/img/science_fiction.svg" class="model">
-                    <!--genre-->
-                    <div class="details">
-                        <h3>Znanstvena fantastika</h3>
+                <a th:href="@{/kategorija/{id}(id=18)}">
+                    <div class="box">
+                        <!--icon-->
+                        <img src="/img/science_fiction.svg" class="model">
+                        <!--genre-->
+                        <div class="details">
+                            <h3>Znanstvena fantastika</h3>
+                        </div>
                     </div>
-                </div>
+                </a>
             </li>
             <!--14------------------------------>
             <li class="item-a">
                 <!--slider-box-->
-                <div class="box">
-                    <!--icon-->
-                    <img src="/img/textbooks.svg" class="model">
-                    <!--genre-->
-                    <div class="details">
-                        <h3>Udžbenici</h3>
+                <a th:href="@{/kategorija/{id}(id=19)}">
+                    <div class="box">
+                        <!--icon-->
+                        <img src="/img/textbooks.svg" class="model">
+                        <!--genre-->
+                        <div class="details">
+                            <h3>Udžbenici</h3>
+                        </div>
                     </div>
-                </div>
+                </a>
             </li>
         </ul>
     </div>
@@ -225,7 +255,7 @@
             <div class="row">
                 <div class="col-md-12">
 
-                    <h1 class="text-center">Books</h1>
+                    <h1 class="text-center">Knjige</h1>
 
                     <div class="row py-4">
                         <div class="col-md-3" th:each="book: ${books}">
@@ -249,7 +279,44 @@
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer class="page-footer font-small special-color-dark pt-4">
 
+        <!-- Footer Links -->
+        <div class="container text-center text-md-left">
+
+            <!-- Footer links -->
+            <div class="row text-center text-md-left mt-3 pb-3">
+
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">Biblioteka</h6>
+                    <p>Web aplikacija za dodavanje i pregledavanje knjiga.</p>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <hr class="w-100 clearfix d-md-none">
+
+                <!-- Grid column -->
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">Kontakt</h6>
+                    <p>
+                        <i class="fa fa-envelope mr-3"></i>milos.mihic99@gmail.com</p>
+                    <p>
+                        <i class="fa fa-phone mr-3"></i>+381 66 5111439</p>
+                    <p><a href="https://www.facebook.com/milos.mihic.7"><i class="fa fa-facebook-f" style="margin-right: 5px"></a></i><a href="https://instagram.com/milos_mihic?igshid=o0ztlibv8ba4"<i class="fa fa-instagram"></i></a></p>
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Footer links -->
+
+        </div>
+        <!-- Footer Links -->
+
+    </footer>
+    <!-- Footer -->
 
 </main>
 
