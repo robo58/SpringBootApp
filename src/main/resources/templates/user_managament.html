@@ -69,7 +69,10 @@
                                     <span th:text="${uRole.name}"></span>,
                                 </span>
                             </td>
-                            <td><a class="btn btn-secondary" th:href="@{/user_managament/{id}(id=${user.id})}">Promjeni</a><button class="btn btn-danger">Obrisi</button></td>
+                            <td>
+                                <a class="btn btn-secondary" th:href="@{/user_managament/{id}(id=${user.id})}">Promjeni</a>
+                                <a th:href="@{/deleteUser/{id}(id=${user.id})}" class="btn btn-danger">Izbriši</a>
+                            </td>
                         </tr>
                         </tbody>
                     </table>

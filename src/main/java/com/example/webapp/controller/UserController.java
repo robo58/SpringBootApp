@@ -145,4 +145,14 @@ public class UserController {
         this.userService.saveUser(mUser);
         return "redirect:/user_managament";
     }
+
+    @GetMapping("/deleteUser/{id}")
+    public String deleteUser(@PathVariable(value="id") long id)
+    {
+
+        // call delete Category by id
+        this.userService.deleteUserById(id);
+        
+        return "redirect:/user_managament";
+    }
 }
