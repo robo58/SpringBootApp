@@ -37,37 +37,37 @@
         <div class="row">
             <div class="col-md-12">
 
-                <h1> Login </h1>
+                <h1> Prijavite se </h1>
                 <hr>
-                <h2>Enter your info</h2>
+                <h2>Unesite svoje podatke</h2>
                 <!-- Login Form -->
                 <form th:action="@{/login}" method="POST">
 
                     <!-- Error message -->
                     <div th:if="${param.error}">
                         <div class="alert alert-danger">
-                            Invalid email or password!
+                            Pogrešan e-mail ili lozinka.
                         </div>
                     </div>     
 
                     <!-- Logout message -->
                     <div th:if="${param.logout}">
                         <div class="alert alert-secondary">
-                            You logged out.
+                            Odjavili ste se.
                         </div>
                     </div>
 
                     <div class="form-group">
                         <input type="text" id="username" name="username" 
-                         placeholder="Enter your email" class="form-control">
+                         placeholder="Unesite svoj e-mail" class="form-control">
                     </div>
                     <div class="form-group">
                         <input type="password" id="password" name="password" 
-                         placeholder="Enter password" class="form-control">    
+                         placeholder="Unesite svoju lozinku" class="form-control">
                     </div>
                     <div class="form-group">
-                        <input type="submit" id="login-submit" name="login-submit" class="form-control btn btn-info col-2" value="Log in">
-                        <span>Dont have an account? <a th:href="@{/register}">Register here.</a></span>    
+                        <input type="submit" id="login-submit" name="login-submit" class="form-control btn btn-info col-2" value="Prijavite se">
+                        <span>Nemate profil? <a th:href="@{/register}">Registrirajte se ovdje.</a></span>
                     </div>
 
                 </form>

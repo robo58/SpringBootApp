@@ -22,13 +22,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <form class="form-inline my-2 my-md-0">
-                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                <input class="form-control" type="text" placeholder="Pretraga" aria-label="Search">
             </form>
             <div sec:authorize="isAnonymous()" class="navbar-nav ml-auto">
                 <a class="nav-item nav-link" th:href="@{/login}">Prijava</a>
                 <a class="nav-item nav-link" th:href="@{/register}">Registracija</a>
             </div>
             <div sec:authorize="isAuthenticated()" class="navbar-nav ml-auto">
+                <a class="nav-item nav-link" th:href="@{/user_managament}">Upravljanje korisnicima</a>
+                <a class="nav-item nav-link" th:href="@{/profil}">Profil</a>
                 <a class="nav-item nav-link" th:href="@{/books}">Knjige</a>
                 <a class="nav-item nav-link" th:href="@{/authors}">Autori</a>
                 <a class="nav-item nav-link" th:href="@{/publishers}">Izdavači</a>
@@ -44,14 +46,14 @@
         <div class="row">
             <div class="col-md-12">
 
-                <h1>Publisher list</h1>
-                <a th:href="@{/newPublisher}" class="btn btn-primary btn-sm mb-3">Add new publisher</a>
+                <h1>Popis izdavača</h1>
+                <a th:href="@{/newPublisher}" class="btn btn-primary btn-sm mb-3">Dodaj novog izdavača</a>
                 <table border="1" class="table table-striped table-responsive-md">
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Name</th>
-                            <th>Actions</th>
+                            <th>Ime</th>
+                            <th>Akcije</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -59,8 +61,8 @@
                             <td th:text="${publisher.id}"></td>
                             <td th:text="${publisher.name}"></td>
                             <td>
-                                <a th:href="@{/updatePublisher/{id}(id=${publisher.id})}" class="btn btn-info">Update</a>
-                                <a th:href="@{/deletePublisher/{id}(id=${publisher.id})}" class="btn btn-danger">Delete</a>
+                                <a th:href="@{/updatePublisher/{id}(id=${publisher.id})}" class="btn btn-info">Ažuriraj</a>
+                                <a th:href="@{/deletePublisher/{id}(id=${publisher.id})}" class="btn btn-danger">Izbriši</a>
                             </td>
                         </tr>
                     </tbody>

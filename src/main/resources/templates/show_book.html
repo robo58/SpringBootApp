@@ -22,13 +22,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <form class="form-inline my-2 my-md-0">
-                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                <input class="form-control" type="text" placeholder="Pretraga" aria-label="Search">
             </form>
             <div sec:authorize="isAnonymous()" class="navbar-nav ml-auto">
                 <a class="nav-item nav-link" th:href="@{/login}">Prijava</a>
                 <a class="nav-item nav-link" th:href="@{/register}">Registracija</a>
             </div>
             <div sec:authorize="isAuthenticated()" class="navbar-nav ml-auto">
+                <a class="nav-item nav-link" th:href="@{/user_managament}">Upravljanje korisnicima</a>
+                <a class="nav-item nav-link" th:href="@{/profil}">Profil</a>
                 <a class="nav-item nav-link" th:href="@{/books}">Knjige</a>
                 <a class="nav-item nav-link" th:href="@{/authors}">Autori</a>
                 <a class="nav-item nav-link" th:href="@{/publishers}">Izdavači</a>
@@ -44,15 +46,15 @@
         <div class="row">
             <div class="col-md-12">
 
-                <h1>Book</h1>
+                <h1>Knjiga</h1>
                 <div th:if="${favorite}">
                   <form action="#" th:action="@{/unFavorBook/{id}(id=${book.id})}" method="POST">
-                    <button type="submit" class="btn btn-danger btn-sm mb-3 form-control">Remove from favorites</button>
+                    <button type="submit" class="btn btn-danger btn-sm mb-3 form-control">Ukloniti iz popisa favorita</button>
                 </form>
                 </div>
                 <div th:unless="${favorite}">
                   <form action="#" th:action="@{/favorBook/{id}(id=${book.id})}" method="POST">
-                    <button type="submit" class="btn btn-success btn-sm mb-3 form-control">Add to favorites</button>
+                    <button type="submit" class="btn btn-success btn-sm mb-3 form-control">Dodajte u popis favorita</button>
                 </form>
                 </div>
                 <img th:src="@{'/uploads/images/'+${book.coverImage}}" alt="Cover image..." style="width: 100px;">
@@ -67,7 +69,7 @@
                 <form action="#" th:action="@{/addReview/{id}(id=${book.id})}" th:object="${newReview}" method="POST">
                   <input type="hidden" th:field="${id}">
                   <textarea class="form-control" th:field="*{text}"></textarea>
-                  <label>Select rating</label>
+                  <label>Izaberite ocjenu</label>
                   <select class="form-control" th:field="*{rating}">
                       <option value="1">1</option>
                       <option value="2">2</option>
@@ -75,11 +77,11 @@
                       <option value="4">4</option>
                       <option value="5">5</option>
                   </select>
-                  <button type="submit" class="btn btn-primary form-control">Add Review</button>
+                  <button type="submit" class="btn btn-primary form-control">Dodajte recenziju</button>
                 </form>
 
                 <br><br>
-                <h2>Reviews</h2>
+                <h2>Recenzije</h2>
                 <div th:each="review : ${reviews}" class="bg-secondary p-3 my-3 rounded text-white">
                   <h4 th:text=${review.user.firstName}></h4>
                     <p th:text="${review.text}"></p>

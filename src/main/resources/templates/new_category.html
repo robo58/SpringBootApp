@@ -22,13 +22,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <form class="form-inline my-2 my-md-0">
-                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                <input class="form-control" type="text" placeholder="Pretraga" aria-label="Search">
             </form>
             <div sec:authorize="isAnonymous()" class="navbar-nav ml-auto">
                 <a class="nav-item nav-link" th:href="@{/login}">Prijava</a>
                 <a class="nav-item nav-link" th:href="@{/register}">Registracija</a>
             </div>
             <div sec:authorize="isAuthenticated()" class="navbar-nav ml-auto">
+                <a class="nav-item nav-link" th:href="@{/user_managament}">Upravljanje korisnicima</a>
+                <a class="nav-item nav-link" th:href="@{/profil}">Profil</a>
                 <a class="nav-item nav-link" th:href="@{/books}">Knjige</a>
                 <a class="nav-item nav-link" th:href="@{/authors}">Autori</a>
                 <a class="nav-item nav-link" th:href="@{/publishers}">Izdavači</a>
@@ -45,16 +47,16 @@
             <div class="col-md-12">
 
                 <hr>
-                <h2>Save category</h2>
+                <h2>Spremite kategoriju</h2>
                 <form action="#" th:action="@{/saveCategory}" th:object="${category}" method="POST">
                    <input type="hidden" th:field="*{id}">
                     <input type="text" th:field="*{name}" 
-                    placeholder="Category name" class="form-control mb-4 col-4">
-                    <button type="submit" class="form-control btn btn-info mb-4 col-4">Save category</button>
+                    placeholder="Ime" class="form-control mb-4 col-4">
+                    <button type="submit" class="form-control btn btn-info mb-4 col-4">Spremite kategoriju</button>
 
                 </form>
                 <hr>
-                <a th:href="@{/categories}">Back to category list</a>
+                <a th:href="@{/categories}">Nazad na popis kategorija</a>
             </div>
         </div>
     </div>

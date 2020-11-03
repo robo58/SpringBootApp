@@ -22,13 +22,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <form class="form-inline my-2 my-md-0">
-                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                <input class="form-control" type="text" placeholder="Pretraga" aria-label="Search">
             </form>
             <div sec:authorize="isAnonymous()" class="navbar-nav ml-auto">
                 <a class="nav-item nav-link" th:href="@{/login}">Prijava</a>
                 <a class="nav-item nav-link" th:href="@{/register}">Registracija</a>
             </div>
             <div sec:authorize="isAuthenticated()" class="navbar-nav ml-auto">
+                <a class="nav-item nav-link" th:href="@{/user_managament}">Upravljanje korisnicima</a>
+                <a class="nav-item nav-link" th:href="@{/profil}">Profil</a>
                 <a class="nav-item nav-link" th:href="@{/books}">Knjige</a>
                 <a class="nav-item nav-link" th:href="@{/authors}">Autori</a>
                 <a class="nav-item nav-link" th:href="@{/publishers}">Izdavači</a>
@@ -45,18 +47,18 @@
             <div class="col-md-12">
 
                 <hr>
-                <h2>Save book</h2>
+                <h2>Spremi knjigu</h2>
                 <form action="#" th:action="@{/saveBook}" th:object="${book}" method="POST" enctype="multipart/form-data">
                    <input type="hidden" th:field="*{id}">
                     <input type="text" th:field="*{title}"
-                    placeholder="Book title" class="form-control mb-4">
-                    <textarea class="form-control mb-4" th:field="*{description}" placeholder="Enter info about book"></textarea>
+                    placeholder="Naziv knjige" class="form-control mb-4">
+                    <textarea class="form-control mb-4" th:field="*{description}" placeholder="Unesite informacije o knjizi"></textarea>
                     <p>
                       <img id="thumbnail" th:src="@{'/uploads/images/'+${book.coverImage}}" alt="Cover image..." style="width: 30%;">
                     </p>
                    <input type="file" accept="image/png, image/jpeg, image/jpg" id="coverImg" name="coverImg" placeholder="Select cover image" class="form-control mb-4">
                     <input type="number" th:field="*{firstPublish}"
-                    placeholder="First publish year" class="form-control mb-4">
+                    placeholder="Datum prvog objavljivanja" class="form-control mb-4">
                     <select th:field="*{author}" class="form-control mb-4">
                       <option th:value="-1" disabled selected>Select author of the book</option>
                       <option th:each="author : ${authors}" th:value="${author.id}">
@@ -64,20 +66,20 @@
                       </option>
                     </select>     
                     <select th:field="*{publisher}" class="form-control mb-4">
-                      <option th:value="-1" disabled selected>Select publisher of the book</option>
+                      <option th:value="-1" disabled selected>Izaberite izdavača knjige</option>
                       <option th:each="publisher : ${publishers}" th:value="${publisher.id}" th:text="${publisher.name}">
                       </option>
                     </select>      
                     <select th:field="*{category}" class="form-control mb-4">
-                      <option th:value="-1" selected disabled>Select category of the book</option>
+                      <option th:value="-1" selected disabled>Izaberite kategoriju knjige</option>
                       <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}">
                       </option>
                     </select>              
-                    <button type="submit" class="form-control btn btn-info mb-4">Save book</button>
+                    <button type="submit" class="form-control btn btn-info mb-4">Spremite knjigu</button>
 
                 </form>
                 <hr>
-                <a th:href="@{/books}">Back to book list</a>
+                <a th:href="@{/books}">Nazad na popis knjiga</a>
             </div>
         </div>
     </div>

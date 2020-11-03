@@ -2,6 +2,7 @@ package com.example.webapp.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.Authenticator;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -12,7 +13,10 @@ import com.example.webapp.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.security.core.Authentication;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,5 +55,30 @@ public class UserController {
         }
 
         return "redirect:/";
+    }
+
+    @PostMapping("/updateUser")
+    public String updateUser(Authentication authentication){
+        User user = this.userService.findByUsername(authentication.getName());
+
+        userService.saveUser(user);
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/profil")
+    public String profil(Authentication authentication, Model model){
+
+        User user = this.userService.findByUsername(authentication.getName());
+        model.addAttribute("user", user);
+
+        return "profil";
+    }
+
+    @GetMapping("/user_managament")
+    public String profil(Model model){
+
+
+        return "user_managament";
     }
 }

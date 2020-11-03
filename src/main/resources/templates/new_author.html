@@ -22,13 +22,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <form class="form-inline my-2 my-md-0">
-                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                <input class="form-control" type="text" placeholder="Pretraga" aria-label="Search">
             </form>
             <div sec:authorize="isAnonymous()" class="navbar-nav ml-auto">
                 <a class="nav-item nav-link" th:href="@{/login}">Prijava</a>
                 <a class="nav-item nav-link" th:href="@{/register}">Registracija</a>
             </div>
             <div sec:authorize="isAuthenticated()" class="navbar-nav ml-auto">
+                <a class="nav-item nav-link" th:href="@{/user_managament}">Upravljanje korisnicima</a>
+                <a class="nav-item nav-link" th:href="@{/profil}">Profil</a>
                 <a class="nav-item nav-link" th:href="@{/books}">Knjige</a>
                 <a class="nav-item nav-link" th:href="@{/authors}">Autori</a>
                 <a class="nav-item nav-link" th:href="@{/publishers}">Izdavači</a>
@@ -45,25 +47,25 @@
             <div class="col-md-12">
 
                 <hr>
-                <h2>Save author</h2>
+                <h2>Spremi autora</h2>
                 <form action="#" th:action="@{/saveAuthor}" th:object="${author}" method="POST" enctype="multipart/form-data">
                    <input type="hidden" th:field="*{id}">
                     <input type="text" th:field="*{firstName}"
-                    placeholder="Author first name" class="form-control mb-4 col-4">
+                    placeholder="Ime" class="form-control mb-4 col-4">
                     <input type="text" th:field="*{lastName}"
-                    placeholder="Author last name" class="form-control mb-4 col-4">
+                    placeholder="Prezime" class="form-control mb-4 col-4">
                     <p>
                       <img id="thumbnail" th:src="@{'/uploads/images/'+${author.avatar}}" alt="Cover image..." style="width: 30%;">
                     </p>
                    <input type="file" accept="image/png, image/jpeg, image/jpg" id="avatarImg" name="avatarImg" placeholder="Select cover image" class="form-control mb-4">
-                    <textarea class="form-control col-4 mb-4" th:field="*{about}" placeholder="Enter info about author"></textarea>
+                    <textarea class="form-control col-4 mb-4" th:field="*{about}" placeholder="Unesite informacije o autoru"></textarea>
                     <input type="date" th:field="*{birthDate}"
-                    placeholder="Author birth date" class="form-control mb-4 col-4">
-                    <button type="submit" class="form-control btn btn-info mb-4 col-4">Save author</button>
+                    placeholder="Datum rođenja" class="form-control mb-4 col-4">
+                    <button type="submit" class="form-control btn btn-info mb-4 col-4">Spremite autora</button>
 
                 </form>
                 <hr>
-                <a th:href="@{/authors}">Back to author list</a>
+                <a th:href="@{/authors}">Natrag na popis autora</a>
             </div>
         </div>
     </div>

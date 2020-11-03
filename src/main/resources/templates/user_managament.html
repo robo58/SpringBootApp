@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Novi izdavač</title>
+    <title>Profil</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
@@ -22,14 +22,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <form class="form-inline my-2 my-md-0">
-                <input class="form-control" type="text" placeholder="Pretraga" aria-label="Search">
+                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
             </form>
             <div sec:authorize="isAnonymous()" class="navbar-nav ml-auto">
                 <a class="nav-item nav-link" th:href="@{/login}">Prijava</a>
                 <a class="nav-item nav-link" th:href="@{/register}">Registracija</a>
             </div>
             <div sec:authorize="isAuthenticated()" class="navbar-nav ml-auto">
-                <a class="nav-item nav-link" th:href="@{/user_managament}">Upravljanje korisnicima</a>
                 <a class="nav-item nav-link" th:href="@{/profil}">Profil</a>
                 <a class="nav-item nav-link" th:href="@{/books}">Knjige</a>
                 <a class="nav-item nav-link" th:href="@{/authors}">Autori</a>
@@ -41,32 +40,42 @@
     </nav>
 </header>
 
-      <!-- Content -->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
+<div class="container">
+    <h1 style="text-align: center; margin-bottom: 20px">Upravljanje korisnicima</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12">
 
-                <hr>
-                <h2>Spremite izdavača</h2>
-                <form action="#" th:action="@{/savePublisher}" th:object="${publisher}" method="POST">
-                   <input type="hidden" th:field="*{id}">
-                    <input type="text" th:field="*{name}" 
-                    placeholder="Ime" class="form-control mb-4 col-4">
-                    <button type="submit" class="form-control btn btn-info mb-4 col-4">Spremite izdavača</button>
+                    <table class="table rounded"  style="background:white;">
+                        <thead class="rounded" style="background:white;">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Ime</th>
+                            <th scope="col">Prezime</th>
+                            <th scope="col">E-mail</th>
+                            <th scope="col">Uloge</th>
+                            <th scope="col">Akcije</th>
+                        </tr>
+                        </thead>
+                        <tbody class="rounded" style="background:white;">
+                        <tr>
+                            <th scope="row"></th>
+                            <td><a href="#"></a></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
 
-                </form>
-                <hr>
-                <a th:href="@{/publishers}">Nazad na popis izdavača</a>
+                </div>
             </div>
         </div>
     </div>
 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    
 </body>
 </html>
