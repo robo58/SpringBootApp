@@ -47,32 +47,51 @@
             <div class="row">
                 <div class="col-md-12">
 
-                    <table class="table rounded"  style="background:white;">
-                        <thead class="rounded" style="background:white;">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Ime</th>
-                            <th scope="col">Prezime</th>
-                            <th scope="col">E-mail</th>
-                            <th scope="col">Uloge</th>
-                            <th scope="col">Akcije</th>
-                        </tr>
-                        </thead>
-                        <tbody class="rounded" style="background:white;">
-                        <tr th:each="user: ${users}">
-                            <th scope="row" th:text="${user.id}"></th>
-                            <td th:text="${user.firstName}"></td>
-                            <td th:text="${user.lastName}"></td>
-                            <td th:text="${user.email}"></td>
-                            <td>
-                                <span th:each="uRole: ${user.roles}">
-                                    <span th:text="${uRole.name}"></span>,
-                                </span>
-                            </td>
-                            <td><a class="btn btn-secondary" th:href="@{/user_managament/{id}(id=${user.id})}">Promjeni</a><button class="btn btn-danger">Obrisi</button></td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <form action="#" th:action="@{/updateUserRoles/{id}(id=${user.id})}" th:object="${user}" method="POST">
+                        <input type="hidden" th:field="*{id}">
+                    <div class="card overflow-hidden">
+                        <div class="row no-gutters row-bordered row-border-light">
+                            <div class="col-md-12">
+                                <div class="tab-content">
+                                    <div class="tab-pane fade active show" id="account-general">
+                                        <div class="card-body media justify-content-center align-items-center">
+                                            <img th:src="'/uploads/images/'+${user.avatar}" alt="Slika profila" style="height: 300px; width: 300px" class="d-block ui-w-80">
+                                        </div>
+                                        <hr class="border-light m-0">
+                
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label class="form-label">Ime</label>
+                                                <input type="text" class="form-control mb-1" th:field="*{firstName}" th:value="${user.firstName}" disabled>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Prezime</label>
+                                                <input type="text" class="form-control" th:field="*{lastName}" th:value="${user.lastName}" disabled>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">E-mail</label>
+                                                <input type="text" class="form-control mb-1" th:field="*{email}" th:value="${user.email}" disabled>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Roles</label>
+                                                <div th:each="role: ${roles}">
+                                                    <label class="form-label" th:text="${role.name}"></label>
+                                                    <input type="checkbox" class="form-control mb-1" id="roles" name="roles" th:checked="${user.roles.contains(role)}" th:value="${role.id}" >
+                                                </div>
+                                            </div>
+                                        </div>
+                
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="text-center mt-3">
+                        <button type="submit" class="btn btn-primary">Spremi promjene</button>&nbsp;
+                    </div>
+                    </form>
+                
 
                 </div>
             </div>
